@@ -5,6 +5,7 @@ dist/
 shot.png
 shot.ps1
 Pomodoro.vbs
+_check.js
 *.log
 npm-debug.log*
 .DS_Store
