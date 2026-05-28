@@ -1,6 +1,6 @@
 {
   "name": "pomofoco",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pomofoco — timer Pomodoro flutuante para estudos",
   "author": {
     "name": "Thiago A. Quirino",
@@ -25,7 +25,8 @@
       {
         "provider": "github",
         "owner": "ThiagoAQuirino",
-        "repo": "pomofoco"
+        "repo": "pomofoco",
+        "releaseType": "release"
       }
     ],
     "directories": {
