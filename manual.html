@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pomofoco — Manual</title>
+<style>
+  :root {
+    --bg: #1b1d23; --card: #23262e; --text: #e8eaed; --muted: #9aa0b0;
+    --focus: #ff6b6b; --short: #4dd4ac; --long: #4d9bff; --line: #2e313a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.55; font-size: 14px;
+    padding: 22px 20px 40px;
+  }
+  h1 { font-size: 20px; margin-bottom: 2px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+  h2 {
+    font-size: 14px; margin: 22px 0 8px;
+    padding-bottom: 5px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2 .ic {
+    width: 22px; height: 22px; flex: 0 0 auto;
+    display: inline-grid; place-items: center;
+    background: var(--card); border-radius: 6px; font-size: 13px;
+  }
+  p { color: var(--text); margin: 6px 0; }
+  ul { list-style: none; margin: 6px 0; }
+  li { position: relative; padding: 4px 0 4px 20px; }
+  li::before { content: "•"; position: absolute; left: 4px; color: var(--focus); }
+  b { color: #fff; }
+  .key {
+    display: inline-block; background: var(--card); border: 1px solid var(--line);
+    border-radius: 5px; padding: 1px 7px; font-size: 12px; color: var(--text);
+    font-family: "Segoe UI", monospace;
+  }
+  .chip {
+    display: inline-block; padding: 1px 8px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; color: #fff;
+  }
+  .tip {
+    background: var(--card); border-left: 3px solid var(--short);
+    border-radius: 8px; padding: 10px 12px; margin: 18px 0 6px; color: var(--text);
+  }
+  .muted { color: var(--muted); }
+  code { background: var(--card); padding: 1px 6px; border-radius: 5px; font-size: 12px; }
+  .donate-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #ff6b6b, #ff9558);
+    color: #fff; border: none; border-radius: 10px;
+    padding: 10px 18px; font-size: 14px; font-weight: 600; cursor: pointer; margin: 6px 0;
+  }
+  .donate-btn:hover { filter: brightness(1.07); }
+  #thanks { display: none; margin-top: 12px; background: var(--card); border-radius: 10px; padding: 14px; border-left: 3px solid var(--focus); }
+  #thanks.open { display: block; }
+  .thanksmsg { color: var(--text); }
+  .pixbox { margin-top: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .pixlabel { display: block; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .pixrow { display: flex; align-items: center; gap: 8px; }
+  #pixkey { flex: 1; min-width: 0; overflow-wrap: anywhere; background: transparent; color: var(--text); font-size: 12px; }
+  #copyPix { flex: 0 0 auto; background: var(--short); color: #08231b; border: none; border-radius: 7px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  #copyPix:hover { filter: brightness(1.05); }
+  .qrwrap { text-align: center; margin-top: 14px; }
+  .qrcap { display: block; font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .pixqr { width: 200px; height: 200px; background: #fff; border-radius: 12px; padding: 8px; }
+  .pixor { text-align: center; font-size: 11px; color: var(--muted); margin: 10px 0 0; }
+  .copiacola { width: 100%; margin-top: 10px; background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 9px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .copiacola:hover { background: #2c3039; }
+</style>
+</head>
+<body>
+  <h1>🍅 Pomofoco — Manual</h1>
+  <div class="sub">Estude em blocos de foco, com pausas no meio. Simples assim.</div>
+
+  <p>A ideia: você foca por um tempo (ex.: <b>25 min</b>), faz uma <b>pausa curta</b>,
+  e a cada <b>4 focos</b> tira uma <b>pausa longa</b>. Cada foco concluído é um “pomodoro”. 🍅</p>
+
+  <h2><span class="ic">▶</span> O timer</h2>
+  <ul>
+    <li><b>▶ / ⏸</b> — inicia ou pausa a contagem.</li>
+    <li><b>↺</b> — reinicia (volta pro foco do zero).</li>
+    <li><b>⏭</b> — pula a fase atual (não conta como pomodoro).</li>
+    <li>O <b>anel</b> ao redor do tempo mostra o quanto falta.</li>
+  </ul>
+
+  <h2><span class="ic">🎨</span> Fases e cores</h2>
+  <p>A cor muda conforme a fase, pra você saber num olhar:</p>
+  <ul>
+    <li><span class="chip" style="background:#ff6b6b">FOCO</span> &nbsp;hora de estudar.</li>
+    <li><span class="chip" style="background:#4dd4ac">PAUSA CURTA</span> &nbsp;respiro rápido.</li>
+    <li><span class="chip" style="background:#4d9bff">PAUSA LONGA</span> &nbsp;descanso maior, a cada 4 pomodoros.</li>
+  </ul>
+
+  <h2><span class="ic">✓</span> Tarefas</h2>
+  <p>Uma lista de “a fazer” que <b>se executa sozinha</b>:</p>
+  <ul>
+    <li>Digite uma tarefa e (opcional) quantos 🍅 ela deve levar. Aperte <span class="key">Enter</span> ou <b>＋</b>.</li>
+    <li><b>Clique numa tarefa</b> (ou no <b>▶</b> dela) — o foco começa naquela tarefa na hora.</li>
+    <li>A cada foco concluído, a tarefa ativa ganha +1 🍅. Sem estimativa, <b>1 foco já conclui</b>; com estimativa, conclui ao chegar em <code>3/3</code>.</li>
+    <li>Depois da pausa, ela <b>retoma a mesma tarefa</b> (se ainda falta) ou <b>puxa a próxima</b> da lista.</li>
+    <li><b>✓</b> conclui na mão · <b>✕</b> exclui.</li>
+    <li>Na aba <b>Concluídas</b> fica o histórico, agrupado por dia, com horário e 🍅 gastos.</li>
+  </ul>
+
+  <h2><span class="ic">📊</span> Estatísticas</h2>
+  <ul>
+    <li><b>Hoje</b> — pomodoros e tempo de foco do dia (aparece embaixo do timer).</li>
+    <li><b>Meta diária</b> — quando você bate, o número fica verde.</li>
+    <li><b>Sequência (streak)</b> — dias seguidos estudando 🔥.</li>
+    <li><b>Gráfico de 7 dias</b> — seus pomodoros da semana.</li>
+  </ul>
+
+  <h2><span class="ic">⚙</span> Configurações</h2>
+  <ul>
+    <li><b>Durações</b> — foco, pausa curta, pausa longa e quantos pomodoros até a pausa longa.</li>
+    <li><b>Meta diária</b> de pomodoros.</li>
+    <li><b>Som do alarme</b> — Bip, Sino, Digital, ou <b>＋ Adicionar som…</b> pra usar um arquivo seu (mp3, wav…). Use o <b>▶</b> pra ouvir e o <b>✕</b> pra remover.</li>
+    <li><b>Volume</b>, <b>tique-taque</b> no foco e <b>ruído ambiente</b> (branco/marrom) pra concentração.</li>
+    <li><b>Iniciar fase sozinho</b>, <b>pausar ao bloquear a tela</b> e <b>iniciar com o Windows</b>.</li>
+  </ul>
+
+  <h2><span class="ic">📌</span> Janela e bandeja</h2>
+  <ul>
+    <li><b>📌</b> — fixa o widget sempre no topo (liga/desliga).</li>
+    <li><b>—</b> — esconde na <b>bandeja do sistema</b> (perto do relógio). Clique no ícone da bandeja pra trazer de volta.</li>
+    <li><b>✕</b> — fecha o app.</li>
+    <li>Arraste pela <b>barra de cima</b> pra mover; arraste a <b>borda</b> pra redimensionar.</li>
+    <li>Ao fim de cada fase o alarme toca e a barra de tarefas pisca pra te avisar.</li>
+  </ul>
+
+  <h2><span class="ic">⌨</span> Atalhos de teclado</h2>
+  <ul>
+    <li><span class="key">Espaço</span> — iniciar / pausar.</li>
+    <li><span class="key">R</span> — reiniciar.</li>
+  </ul>
+
+  <h2><span class="ic">💛</span> Apoie o projeto</h2>
+  <p>O Pomofoco é gratuito e independente. Se ele te ajuda nos estudos, considere mandar um agradecimento via Pix. 🍅</p>
+  <button class="donate-btn" id="apoiarBtn">💛 Apoiar</button>
+  <div id="thanks">
+    <p class="thanksmsg">
+      <b>Muito obrigado pela sua cooperação! 💛</b><br><br>
+      O Pomofoco nasceu pra deixar seus estudos mais leves e focados — e saber que ele te ajudou já é a melhor recompensa.
+      É um projeto independente, mantido nas horas livres e com muito carinho.<br><br>
+      Sua contribuição, de qualquer valor, ajuda a manter o projeto vivo, custear o tempo de desenvolvimento e trazer novas melhorias.
+      Não existe valor mínimo: o que importa é o gesto. 🙏<br><br>
+      Escaneie o QR no app do seu banco ou copie a chave Pix. De coração, obrigado por fazer parte dessa jornada de foco! 🍅
+    </p>
+    <div class="qrwrap">
+      <span class="qrcap">Abra o app do seu banco → Pix → Ler QR Code e aponte aqui</span>
+      <img class="pixqr" src="pix-qr.png" alt="QR Code Pix">
+    </div>
+    <p class="pixor">ou copie a chave:</p>
+    <div class="pixbox">
+      <span class="pixlabel">Chave Pix (aleatória)</span>
+      <div class="pixrow">
+        <code id="pixkey">f5d89e92-9364-4c56-93c6-d9c6d472d973</code>
+        <button id="copyPix">Copiar</button>
+      </div>
+    </div>
+    <button class="copiacola" id="copyCopiaCola">📋 Copiar Pix Copia e Cola</button>
+    <code id="pixpayload" style="display:none">00020126580014br.gov.bcb.pix0136f5d89e92-9364-4c56-93c6-d9c6d472d9735204000053039865802BR5916THIAGO A QUIRINO6007MARINGA62070503***6304F3C4</code>
+  </div>
+
+  <div class="tip">
+    <b>Dica:</b> monte sua lista de tarefas no começo do estudo, clique na primeira e deixe rolar.
+    Quando precisar de silêncio total, deixe o widget na bandeja — ele continua contando e te avisa na hora da pausa.
+  </div>
+
+  <p class="muted" style="margin-top:16px;font-size:12px">Feche esta janela quando quiser — o timer continua rodando no widget.</p>
+
+  <script>
+    (function () {
+      var apoiar = document.getElementById("apoiarBtn");
+      var thanks = document.getElementById("thanks");
+
+      apoiar.addEventListener("click", function () {
+        thanks.classList.add("open");
+        thanks.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      function copyText(text, btn, okLabel) {
+        (async function () {
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch (e) {
+            var ta = document.createElement("textarea");
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand("copy"); } catch (_) {}
+            document.body.removeChild(ta);
+          }
+          var orig = btn.textContent;
+          btn.textContent = okLabel;
+          setTimeout(function () { btn.textContent = orig; }, 1600);
+        })();
+      }
+
+      var copyKey = document.getElementById("copyPix");
+      copyKey.addEventListener("click", function () {
+        copyText(document.getElementById("pixkey").textContent.trim(), copyKey, "Copiado! ✓");
+      });
+
+      var copyCC = document.getElementById("copyCopiaCola");
+      copyCC.addEventListener("click", function () {
+        copyText(document.getElementById("pixpayload").textContent.trim(), copyCC, "Código copiado! ✓");
+      });
+    })();
+  </script>
+</body>
+</html>

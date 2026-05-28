@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.rcedit/
+.wcs-test/
+shot.png
+shot.ps1
+Pomodoro.vbs
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

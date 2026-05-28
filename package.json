@@ -1,0 +1,60 @@
+{
+  "name": "pomofoco",
+  "version": "1.0.0",
+  "description": "Pomofoco — timer Pomodoro flutuante para estudos",
+  "author": {
+    "name": "Thiago A. Quirino",
+    "email": "thiangelio@gmail.com"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^26.8.1",
+    "qrcode": "^1.5.4"
+  },
+  "build": {
+    "appId": "com.thiag.pomofoco",
+    "productName": "Pomofoco",
+    "copyright": "Copyright © 2026 Thiago A. Quirino",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ThiagoAQuirino",
+        "repo": "pomofoco"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "manual.html",
+      "icon.png",
+      "pix-qr.png"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Pomofoco"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  }
+}
