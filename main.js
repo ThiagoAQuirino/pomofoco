@@ -49,24 +49,32 @@ function showWin() {
 function sendCmd(cmd) {
   if (win) win.webContents.send("tray:command", cmd);
 }
+function buildTrayMenu(labels) {
+  if (!tray) return;
+  const l = labels || { show: "Mostrar", toggle: "Iniciar / Pausar", skip: "Pular fase", reset: "Reiniciar", quit: "Sair" };
+  tray.setContextMenu(Menu.buildFromTemplate([
+    { label: l.show, click: showWin },
+    { label: l.toggle, click: () => sendCmd("toggle") },
+    { label: l.skip, click: () => sendCmd("skip") },
+    { label: l.reset, click: () => sendCmd("reset") },
+    { type: "separator" },
+    { label: l.quit, click: () => app.quit() },
+  ]));
+}
 function createTray() {
   tray = new Tray(nativeImage.createEmpty());
   tray.setToolTip("Pomofoco");
-  const menu = Menu.buildFromTemplate([
-    { label: "Mostrar", click: showWin },
-    { label: "Iniciar / Pausar", click: () => sendCmd("toggle") },
-    { label: "Pular fase", click: () => sendCmd("skip") },
-    { label: "Reiniciar", click: () => sendCmd("reset") },
-    { type: "separator" },
-    { label: "Sair", click: () => app.quit() },
-  ]);
-  tray.setContextMenu(menu);
+  buildTrayMenu();
   tray.on("click", showWin);
 }
+ipcMain.on("tray:menu", (_e, labels) => buildTrayMenu(labels));
 
 /* ---------- janela do manual ---------- */
-function openManual() {
-  if (manualWin && !manualWin.isDestroyed()) { manualWin.show(); manualWin.focus(); return; }
+function openManual(lang) {
+  if (manualWin && !manualWin.isDestroyed()) {
+    manualWin.loadFile("manual.html", { query: { lang: lang || "pt" } });
+    manualWin.show(); manualWin.focus(); return;
+  }
   manualWin = new BrowserWindow({
     width: 480,
     height: 660,
@@ -77,10 +85,10 @@ function openManual() {
     webPreferences: { contextIsolation: true },
   });
   manualWin.setMenuBarVisibility(false);
-  manualWin.loadFile("manual.html");
+  manualWin.loadFile("manual.html", { query: { lang: lang || "pt" } });
   manualWin.on("closed", () => { manualWin = null; });
 }
-ipcMain.on("manual:open", openManual);
+ipcMain.on("manual:open", (_e, lang) => openManual(lang));
 
 /* ---------- IPC ---------- */
 ipcMain.on("window:minimize", () => win && win.hide());   // minimizar -> bandeja
