@@ -1,67 +1,64 @@
-# 🍅 Pomofoco
+# Pomofoco
 
-> Timer Pomodoro flutuante para estudos — foque, descanse e acompanhe seu progresso, sem sair de vista.
+A lightweight, always-on-top Pomodoro timer for studying on Windows. Focus in blocks, take breaks, and track your progress without losing sight of the timer.
 
-Um widget de desktop leve e sempre-no-topo que aplica a Técnica Pomodoro: você estuda em blocos de foco, faz pausas curtas e, a cada ciclo, uma pausa longa.
+## Features
 
----
+- Floating, always-on-top timer; draggable and resizable
+- Color-coded phases: focus, short break, long break (configurable cycles)
+- To-do style task list: click a task to start focusing on it; it auto-completes by its pomodoro estimate and moves to history
+- Statistics: pomodoros and focus time per day, daily goal, streak, and a 7-day chart
+- Sounds: alarms (beep / bell / digital) plus custom sounds (use your own file), volume, ticking, and ambient noise (white/brown)
+- System tray icon that shows the remaining time; minimizes to tray
+- Native notification and taskbar flash at the end of each phase
+- Start with Windows and auto-pause when the screen is locked
+- Automatic updates via GitHub Releases
+- Built-in manual (the "?" button)
 
-## ✨ Recursos
+## Installation (Windows)
 
-- **Timer flutuante** sempre-no-topo, arrastável e redimensionável
-- **Fases com cores**: foco, pausa curta e pausa longa (ciclos configuráveis)
-- **Tarefas estilo to-do**: clique numa tarefa e o foco já começa nela; conclui sozinha pela estimativa de 🍅 e vai pro histórico
-- **Estatísticas**: pomodoros e tempo de foco do dia, meta diária, sequência (streak) e gráfico dos últimos 7 dias
-- **Sons**: alarmes (bip / sino / digital) + **sons personalizados** (use seu próprio arquivo), volume, tique-taque e **ruído ambiente** (branco/marrom)
-- **Bandeja do sistema** com ícone que mostra o tempo; minimiza pra lá
-- **Notificação + piscar a barra** no fim de cada fase
-- **Iniciar com o Windows** e **pausar ao bloquear a tela**
-- **Manual** embutido (botão `?`)
+1. Download `Pomofoco Setup 1.0.0.exe` from the [Releases](../../releases) page.
+2. Run it. Because the app is not code-signed yet, Windows SmartScreen may warn about an "unknown publisher" — click **More info**, then **Run anyway**.
+3. The installer creates Start Menu and Desktop shortcuts and an uninstaller.
 
-## 📥 Instalação (Windows)
+Requires Windows 10 or 11 (64-bit).
 
-1. Baixe o `Pomofoco Setup 1.0.0.exe`.
-2. Execute. Como o app não é assinado, o **SmartScreen** pode avisar — clique em **"Mais informações" → "Executar assim mesmo"**.
-3. O instalador cria atalho no Menu Iniciar e na Área de Trabalho, além do desinstalador.
+## Usage
 
-> Requer **Windows 10 ou 11** (64-bit).
+- Play/Pause, reset, and skip with the on-screen buttons.
+- Keyboard: `Space` = start/pause, `R` = reset.
+- Title-bar icons: tasks, statistics, settings, pin-on-top, minimize-to-tray, and manual.
 
-## 🚀 Uso rápido
-
-- **▶ / ⏸** inicia/pausa · **↺** reinicia · **⏭** pula a fase
-- **Espaço** = play/pause · **R** = reiniciar
-- **✓** tarefas · **📊** estatísticas · **⚙** configurações · **📌** fixar no topo · **—** bandeja · **?** manual
-
-## 🛠️ Rodando a partir do código-fonte
+## Building from source
 
 ```bash
 npm install
-npm start          # roda o app em modo dev
-npm run dist       # gera o instalador Windows (NSIS) em dist/
+npm start        # run the app in dev mode
+npm run dist     # build the Windows installer (NSIS) into dist/
 ```
 
-> **Nota de build (Windows sem admin):** o `electron-builder` pode falhar ao extrair os symlinks de macOS do pacote `winCodeSign`. Soluções: ative o **Modo Desenvolvedor do Windows** ou rode o build uma vez como **administrador** (o `winCodeSign` fica em cache e os builds seguintes funcionam normalmente).
+**Build note (Windows without admin):** electron-builder may fail while extracting the macOS symlinks bundled in the `winCodeSign` package. Workarounds: enable **Windows Developer Mode**, or run the build once **as Administrator** (winCodeSign is then cached and later builds work normally). Builds on GitHub Actions are not affected, since the runners have the required privileges.
 
-## 🧰 Tecnologia
+## Tech
 
-Construído com **Electron**. Sem servidores e sem coleta de dados — tudo é salvo localmente na sua máquina.
+Built with [Electron](https://www.electronjs.org/). No servers and no data collection — everything is stored locally on your machine.
 
-## 💛 Apoie o projeto
+## Support the project
 
-O Pomofoco é **gratuito** e feito de forma independente. Se ele te ajuda nos estudos e você quiser agradecer, uma doação via **Pix** mantém o projeto vivo e em evolução. Não há valor mínimo — o gesto já vale muito. 🍅
+Pomofoco is free and independent. If it helps your studies and you would like to say thanks, a donation via **Pix** (Brazil's instant payment system) keeps the project alive and evolving. There is no minimum amount.
 
-**Chave Pix (aleatória):**
+Pix key (random):
 
 ```
 f5d89e92-9364-4c56-93c6-d9c6d472d973
 ```
 
-(Você também encontra o botão **"Apoiar 💛"** dentro do app, no manual.)
+A **Support** button with a Pix QR code is also available inside the app, in the manual.
 
-## 📄 Licença
+## License
 
-[MIT](LICENSE) © 2026 Thiago A. Quirino
+[MIT](LICENSE) — Copyright (c) 2026 Thiago A. Quirino.
 
-## 👤 Autor
+## Author
 
-**Thiago A. Quirino** — thiangelio@gmail.com
+Thiago A. Quirino — thiangelio@gmail.com
